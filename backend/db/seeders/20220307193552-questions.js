@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         userId: 1,
-        title: 'Why is my leaking with ink?',
+        title: 'Why is my pen leaking ink?',
         imageUrl: 'https://preview.redd.it/m0pir27buph21.jpg?width=4032&format=pjpg&auto=webp&s=3aec52acb4d75e591a78126505265152f036cccf',
         description: 'Every time I use this old blue ink, my pen leaks.  Is it the ink or the pen?',
         createdAt: new Date(),
@@ -27,7 +27,7 @@ module.exports = {
       },
       {
         userId: 2,
-        title: 'How can I improve my writing?',
+        title: 'How can I improve my handwriting?',
         imageUrl: 'https://media.istockphoto.com/photos/calligraphy-pen-and-letter-closeup-photo-picture-id172741047?b=1&k=20&m=172741047&s=170667a&w=0&h=RnDkoiVlGxzqK7uwSBN66ReLW1WHgkmKLO5whC72m20=',
         description: 'My friend has excellent handwriting.  I bought a new fountain pen and I cannot write like her.  Are there online tutorials?',
         createdAt: new Date(),
