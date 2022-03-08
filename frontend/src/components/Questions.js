@@ -13,10 +13,18 @@ const Questions = () => {
 
     return (
         <>
-            <h1>Question List</h1>
-            {questionList?.map(({ id, title }) => (
-                <p key={id}>{title}</p>
-            ))}
+
+            <h1>Questions</h1>
+            {questionList?.map(({ id, title, imageUrl, description }) => (
+                <div>
+                    <p key={id}>{title}</p>
+                    <img src={imageUrl} />
+                    <p key={id}>{description}</p>
+                    <hr></hr>
+                </div>
+            ))
+            }
+
         </>
     );
 };

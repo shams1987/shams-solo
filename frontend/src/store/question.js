@@ -1,3 +1,5 @@
+import { csrfFetch } from './csrf';
+
 // constant to avoid debugging typos
 const GET_ALL_QUESTIONS = 'Question/getAllQuestions';
 
@@ -11,7 +13,7 @@ const loadQuestions = (questions) => {
 
 // thunk action creator
 export const getAllQuestions = () => async (dispatch) => {
-    const response = await fetch('/api/questions');
+    const response = await csrfFetch('/api/questions');
 
     if (response.ok) {
         const data = await response.json();
