@@ -14,8 +14,6 @@ const Questions = () => {
 
     return (
         <>
-            <button type='button'>Create a Question</button>
-            <hr></hr>
             <h1>Questions</h1>
             {questionList?.map(({ id, userId, title, imageUrl, description }) => (
                 <div>
