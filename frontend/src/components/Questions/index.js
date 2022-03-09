@@ -9,17 +9,17 @@ const Questions = () => {
     const questionList = useSelector((state) => Object.values(state.question));
 
     const sessionUser = useSelector(state => state.session.user);
-    const { questionId } = useParams();
+    //const { questionId } = useParams();
 
     useEffect(() => {
         dispatch(getAllQuestions());
     }, [dispatch]);
 
-    const handleDelete = () => {
+    const handleDelete = (id) => {
         //e.preventDefault();
 
         //  Dispatch the return value of the thunk creator
-        dispatch(deleteQuestion(questionId));
+        dispatch(deleteQuestion(id));
     };
 
     return (
@@ -31,7 +31,7 @@ const Questions = () => {
                     <img src={imageUrl} />
                     <p key={id}>{description}</p>
                     {sessionUser.id === userId ? <button type='button'>Update</button> : null}
-                    {sessionUser.id === userId ? <button type='button' onClick={handleDelete}>Delete</button> : null}
+                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete</button> : null}
                     {sessionUser.id === userId ? null : <button type='button'>Answer</button>}
                     <hr></hr>
                 </div>
