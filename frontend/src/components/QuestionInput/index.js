@@ -23,7 +23,7 @@ const QuestionInput = () => {
             description
         };
 
-        // 8. Dispatch the return value of the thunk creator instead (the thunk)
+        //  Dispatch the return value of the thunk creator instead (the thunk)
         dispatch(postQuestion(newQuestion));
         reset();
     };
