@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 // constant to avoid debugging typos
 const GET_ALL_QUESTIONS = 'Question/getAllQuestions';
+const ADD_QUESTION = 'Question/addQuestion'
 
 //regular action creator
 const loadQuestions = (questions) => {
@@ -10,8 +11,12 @@ const loadQuestions = (questions) => {
         questions
     };
 };
+export const addQuestion = (newQuestion) => ({
+    type: ADD_QUESTION,
+    newQuestion,
+});
 
-// thunk action creator
+// thunk action creator for get
 export const getAllQuestions = () => async (dispatch) => {
     const response = await csrfFetch('/api/questions');
 
@@ -22,6 +27,17 @@ export const getAllQuestions = () => async (dispatch) => {
         return data;
     }
 };
+// Create thunk creator for POST request
+export const postQuestion = (data) => async dispatch => {
+    const res = await fetch('/api/questions', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    const newQuestion = await res.json()
+    dispatch(addQuestion(newQuestion))
+    return newQuestion;
+}
 
 // state object
 const initialState = {};
@@ -34,6 +50,11 @@ const questionsReducer = (state = initialState, action) => {
             action.questions.forEach((question) => (newState[question.id] = question));
             return newState;
         }
+        case ADD_QUESTION:
+            return {
+                ...state,
+                entries: { ...state.entries, [action.newQuestion.id]: action.newQuestion }
+            };
         default:
             return state;
     }
