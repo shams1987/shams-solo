@@ -15,5 +15,15 @@ router.post('/', asyncHandler(async (req, res) => {
     const question = await Question.create(req.body);
     res.json(question);
 }));
+router.delete(
+    '/:id',
+    asyncHandler(async function (req, res) {
+        const question = await Question.findByPk(req.params.id);
+        //if (!question) throw new Error('Cannot find item');
+
+        await Question.destroy({ where: { id: question.id } });
+        return res.json({ id: question.id });
+    })
+);
 
 module.exports = router;

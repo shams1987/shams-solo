@@ -2,7 +2,8 @@ import { csrfFetch } from './csrf';
 
 // constant to avoid debugging typos
 const GET_ALL_QUESTIONS = 'Question/getAllQuestions';
-const ADD_QUESTION = 'Question/addQuestion'
+const ADD_QUESTION = 'Question/addQuestion';
+const REMOVE_QUESTION = 'Question/removeQuestion';
 
 //regular action creator
 const loadQuestions = (questions) => {
@@ -16,6 +17,11 @@ export const addQuestion = (newQuestion) => ({
     newQuestion,
 });
 
+const removeQuestion = (questionId) => ({
+    type: REMOVE_QUESTION,
+    questionId
+});
+
 // thunk action creator for get
 export const getAllQuestions = () => async (dispatch) => {
     const response = await csrfFetch('/api/questions');
@@ -27,7 +33,7 @@ export const getAllQuestions = () => async (dispatch) => {
         return data;
     }
 };
-// Create thunk action creator for POST request
+// thunk action creator for POST request
 export const postQuestion = (data) => async dispatch => {
     const res = await csrfFetch('/api/questions', {
         method: "POST",
@@ -38,6 +44,18 @@ export const postQuestion = (data) => async dispatch => {
     dispatch(addQuestion(newQuestion))
     return newQuestion;
 }
+// thunk action creator for DELETE request
+export const deleteQuestion = (questionId) => async dispatch => {
+    const response = await csrfFetch(`/api/questions/${questionId}`, {
+        method: 'delete',
+    });
+
+    if (response.ok) {
+        const { id: deletedQuestionId } = await response.json();
+        dispatch(removeQuestion(deletedQuestionId));
+        return deletedQuestionId;
+    }
+};
 
 // state object
 const initialState = {};
@@ -55,6 +73,10 @@ const questionsReducer = (state = initialState, action) => {
                 ...state,
                 entries: { ...state.entries, [action.newQuestion.id]: action.newQuestion }
             };
+        case REMOVE_QUESTION:
+            const newState = { ...state };
+            delete newState[action.questionId];
+            return newState;
         default:
             return state;
     }
