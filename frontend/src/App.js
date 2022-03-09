@@ -22,7 +22,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/questions">
+          <Route path="/questions" exact>
             <Questions />
           </Route>
           <Route path="/questions/new">

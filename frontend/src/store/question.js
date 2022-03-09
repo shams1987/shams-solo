@@ -27,9 +27,9 @@ export const getAllQuestions = () => async (dispatch) => {
         return data;
     }
 };
-// Create thunk creator for POST request
+// Create thunk action creator for POST request
 export const postQuestion = (data) => async dispatch => {
-    const res = await fetch('/api/questions', {
+    const res = await csrfFetch('/api/questions', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
