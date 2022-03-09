@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Questions from "./components/Questions";
+import QuestionInput from "./components/QuestionInput";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/questions">
             <Questions />
+          </Route>
+          <Route path="/questions/new">
+            <QuestionInput />
           </Route>
         </Switch>
       )}

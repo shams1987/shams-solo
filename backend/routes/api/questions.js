@@ -11,7 +11,9 @@ router.get(
         res.json(questions);
     })
 );
-
-
+router.post('/', asyncHandler(async (req, res) => {
+    const question = await Question.create(req.body);
+    res.json(question);
+}));
 
 module.exports = router;
