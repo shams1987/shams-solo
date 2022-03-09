@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postQuestion } from "../../store/question";
+import { useHistory } from 'react-router-dom';
 
 const QuestionInput = () => {
     const dispatch = useDispatch();
@@ -8,6 +9,9 @@ const QuestionInput = () => {
     const [title, setTitle] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
+    const sessionUser = useSelector(state => state.session.user);
+
+    const history = useHistory();
 
     const reset = () => {
         setTitle("");
@@ -18,6 +22,7 @@ const QuestionInput = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newQuestion = {
+            userId: sessionUser.id,
             title,
             imageUrl,
             description
@@ -26,6 +31,7 @@ const QuestionInput = () => {
         //  Dispatch the return value of the thunk creator instead (the thunk)
         dispatch(postQuestion(newQuestion));
         reset();
+        history.push('/questions');
     };
 
     return (
