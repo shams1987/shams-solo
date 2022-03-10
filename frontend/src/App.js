@@ -29,7 +29,7 @@ function App() {
           <Route path="/questions/new" exact>
             <QuestionInput />
           </Route>
-          <Route path="/questions/:id/update" exact>
+          <Route exact path="/questions/:id/update">
             <QuestionUpdate />
           </Route>
         </Switch>

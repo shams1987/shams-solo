@@ -1,9 +1,10 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Question } = require('../../db/models');
+const { Question, Answer } = require('../../db/models');
 
 const router = express.Router();
 
+// Read all questions
 router.get(
     '/',
     asyncHandler(async function (req, res) {
@@ -11,10 +12,14 @@ router.get(
         res.json(questions);
     })
 );
+
+// Create a question
 router.post('/', asyncHandler(async (req, res) => {
     const question = await Question.create(req.body);
     res.json(question);
 }));
+
+// Delete a question
 router.delete(
     '/:id',
     asyncHandler(async function (req, res) {
@@ -24,21 +29,71 @@ router.delete(
         return res.json({ id: question.id });
     })
 );
+
+// Update a question
 router.put(
     '/:id',
     asyncHandler(async function (req, res) {
-        const id = req.body.id;
-        delete req.body.id;
 
-        await Question.update(req.body, {
-            where: { id },
-            returning: true,
-            plain: true,
-        });
-        const question = Question.findByPk(id);
-
-        return res.json(question);
+        const { title, imageUrl, description } = req.body;
+        const questionId = req.params.id;
+        const question = await Question.findByPk(questionId);
+        const newQuestion = await question.update({ title, imageUrl, description })
+        return res.json(newQuestion);
     })
 );
+
+// router.put(
+//     '/:id',
+//     asyncHandler(async function (req, res) {
+
+//         const questionId = req.params.id;
+//         await Question.update(req.body, {
+//             where: { id: questionId }
+//         });
+
+//         const question = await Question.findByPk(questionId);
+//         return res.json(question);
+//     })
+// );
+
+
+// router.put('/:id',
+//     asyncHandler(async (req, res) => {
+//         console.log('*************', req.params.id)
+//         const questionId = req.params.id
+//         const { title, description } = req.body
+//         const question = await Question.findOne({
+//             where: {
+//                 id: questionId
+//             }
+//         })
+
+//         if (question) {
+//             await Question.update({
+//                 title,
+//                 description
+//             })
+//         }
+//         return res.json({ question })
+//     })
+// )
+
+// Read answers to one question
+router.get(
+    '/:id/answers',
+    asyncHandler(async function (req, res) {
+        const answers = await Answer.findAll({
+            where: {
+                questionId: +req.params.id,
+            },
+        });
+
+        return res.json(answers);
+    })
+);
+
+
+
 
 module.exports = router;
