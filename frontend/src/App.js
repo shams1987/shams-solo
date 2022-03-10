@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import Questions from "./components/Questions";
 import QuestionInput from "./components/QuestionInput";
 import QuestionUpdate from "./components/QuestionUpdate";
+import Answers from "./components/Answers";
+import AnswerInput from "./components/AnswerInput";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,17 +22,23 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/questions" exact>
+          <Route exact path="/questions">
             <Questions />
           </Route>
-          <Route path="/questions/new" exact>
+          <Route exact path="/questions/new">
             <QuestionInput />
           </Route>
           <Route exact path="/questions/:id/update">
             <QuestionUpdate />
+          </Route>
+          <Route exact path="/answers/new">
+            <AnswerInput />
+          </Route>
+          <Route exact path="/answers/:id">
+            <Answers />
           </Route>
         </Switch>
       )}
