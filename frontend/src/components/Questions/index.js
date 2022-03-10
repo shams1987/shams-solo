@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllQuestions } from '../../store/question';
+import { Link } from 'react-router-dom';
+import { getAllQuestions, deleteQuestion } from '../../store/question';
+
 
 const Questions = () => {
     const dispatch = useDispatch();
@@ -12,6 +14,12 @@ const Questions = () => {
         dispatch(getAllQuestions());
     }, [dispatch]);
 
+    const handleDelete = (id) => {
+
+        //  Dispatch the return value of the thunk creator
+        dispatch(deleteQuestion(id));
+    };
+
     return (
         <>
             <h1>Questions</h1>
@@ -20,8 +28,8 @@ const Questions = () => {
                     <p key={id}>{title}</p>
                     <img src={imageUrl} />
                     <p key={id}>{description}</p>
-                    {sessionUser.id === userId ? <button type='button'>Update</button> : null}
-                    {sessionUser.id === userId ? <button type='button'>Delete</button> : null}
+                    {sessionUser.id === userId ? <Link to={`/questions/${id}`}><button type='button'>Update</button></Link> : null}
+                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete</button> : null}
                     {sessionUser.id === userId ? null : <button type='button'>Answer</button>}
                     <hr></hr>
                 </div>
