@@ -43,42 +43,6 @@ router.put(
     })
 );
 
-// router.put(
-//     '/:id',
-//     asyncHandler(async function (req, res) {
-
-//         const questionId = req.params.id;
-//         await Question.update(req.body, {
-//             where: { id: questionId }
-//         });
-
-//         const question = await Question.findByPk(questionId);
-//         return res.json(question);
-//     })
-// );
-
-
-// router.put('/:id',
-//     asyncHandler(async (req, res) => {
-//         console.log('*************', req.params.id)
-//         const questionId = req.params.id
-//         const { title, description } = req.body
-//         const question = await Question.findOne({
-//             where: {
-//                 id: questionId
-//             }
-//         })
-
-//         if (question) {
-//             await Question.update({
-//                 title,
-//                 description
-//             })
-//         }
-//         return res.json({ question })
-//     })
-// )
-
 // Read answers to one question
 router.get(
     '/:id/answers',

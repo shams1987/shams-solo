@@ -24,17 +24,18 @@ const QuestionUpdate = () => {
     const updateImageUrl = (e) => setImageUrl(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newQuestion = {
+            id: question.id,
             userId: sessionUser.id,
             title,
             imageUrl,
             description
         };
-        //  Dispatch the return value of the thunk creator instead
-        dispatch(updateQuestion(newQuestion));
-        history.push('/questions');
+        //  Dispatch the return value of the thunk creator
+        const questionData = await dispatch(updateQuestion(newQuestion));
+        if (questionData) history.push('/questions');
     };
 
     return (
