@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Questions from "./components/Questions";
 import QuestionInput from "./components/QuestionInput";
+import QuestionUpdate from "./components/QuestionUpdate";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,8 +26,11 @@ function App() {
           <Route path="/questions" exact>
             <Questions />
           </Route>
-          <Route path="/questions/new">
+          <Route path="/questions/new" exact>
             <QuestionInput />
+          </Route>
+          <Route path="/questions/:id/update" exact>
+            <QuestionUpdate />
           </Route>
         </Switch>
       )}

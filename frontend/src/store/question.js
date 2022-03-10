@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf';
 const GET_ALL_QUESTIONS = 'Question/getAllQuestions';
 const ADD_QUESTION = 'Question/addQuestion';
 const REMOVE_QUESTION = 'Question/removeQuestion';
+const UPDATE_QUESTION = 'Question/updateQuestion';
 
 //regular action creator
 const loadQuestions = (questions) => {
@@ -20,6 +21,10 @@ export const addQuestion = (newQuestion) => ({
 const removeQuestion = (questionId) => ({
     type: REMOVE_QUESTION,
     questionId
+});
+export const update = (newQuestion) => ({
+    type: UPDATE_QUESTION,
+    newQuestion,
 });
 
 // thunk action creator for get
@@ -56,6 +61,22 @@ export const deleteQuestion = (questionId) => async dispatch => {
         return deletedQuestionId;
     }
 };
+// thunk action creator for UPDATE request
+export const updateQuestion = (data) => async dispatch => {
+    const response = await csrfFetch(`/api/questions/${data.id}`, {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        const question = await response.json();
+        dispatch(update(question));
+        return question;
+    }
+};
 
 // state object
 const initialState = {};
@@ -77,6 +98,11 @@ const questionsReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.questionId];
             return newState;
+        case UPDATE_QUESTION:
+            return {
+                ...state,
+                [action.question.id]: action.question
+            };
         default:
             return state;
     }
