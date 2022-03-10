@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Question, Answer } = require('../../db/models');
+const { Question } = require('../../db/models');
 
 const router = express.Router();
 
@@ -40,20 +40,6 @@ router.put(
         const question = await Question.findByPk(questionId);
         const newQuestion = await question.update({ title, imageUrl, description })
         return res.json(newQuestion);
-    })
-);
-
-// Read answers to one question
-router.get(
-    '/:id/answers',
-    asyncHandler(async function (req, res) {
-        const answers = await Answer.findAll({
-            where: {
-                questionId: +req.params.id,
-            },
-        });
-
-        return res.json(answers);
     })
 );
 

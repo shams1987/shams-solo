@@ -31,9 +31,6 @@ function Navigation({ isLoaded }) {
             <li>
                 <NavLink to="/questions">Questions</NavLink>
             </li>
-            <li>
-                <NavLink to="/questions/new">Enter a Question</NavLink>
-            </li>
         </ul>
     );
 }
