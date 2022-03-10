@@ -27,6 +27,7 @@ export const update = (newQuestion) => ({
     newQuestion,
 });
 
+
 // thunk action creator for get
 export const getAllQuestions = () => async (dispatch) => {
     const response = await csrfFetch('/api/questions');

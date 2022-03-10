@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateQuestion } from "../../store/question";
 import { useHistory } from 'react-router-dom';
@@ -11,8 +11,10 @@ const QuestionUpdate = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
 
+    const history = useHistory();
+
     const { id } = useParams();
-    const question = useSelector((state) => state.questions[id]);
+    const question = useSelector((state) => state.question[id]);
 
     const [title, setTitle] = useState(question.title);
     const [imageUrl, setImageUrl] = useState(question.imageUrl);
@@ -22,29 +24,23 @@ const QuestionUpdate = () => {
     const updateImageUrl = (e) => setImageUrl(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
 
-
-
-    // const history = useHistory();
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const newQuestion = {
-    //         userId: sessionUser.id,
-    //         title: setTitle(e.target.value),
-    //         imageUrl: setImageUrl(e.target.value),
-    //         description: setDescription(e.target.value)
-    //     };
-
-    //     //  Dispatch the return value of the thunk creator instead
-    //     dispatch(updateQuestion(newQuestion));
-
-    //     history.push('/questions');
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newQuestion = {
+            userId: sessionUser.id,
+            title,
+            imageUrl,
+            description
+        };
+        //  Dispatch the return value of the thunk creator instead
+        dispatch(updateQuestion(newQuestion));
+        history.push('/questions');
+    };
 
     return (
         <div className="inputBox">
             <h1>Update Question</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={title}
