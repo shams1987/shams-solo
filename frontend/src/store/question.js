@@ -102,7 +102,7 @@ const questionsReducer = (state = initialState, action) => {
         case UPDATE_QUESTION:
             return {
                 ...state,
-                [action.question.id]: action.question
+                [action.newQuestion.id]: action.newQuestion
             };
         default:
             return state;
