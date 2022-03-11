@@ -34,6 +34,19 @@ router.delete(
     })
 );
 
+// Update an answer
+router.put(
+    '/:id',
+    asyncHandler(async function (req, res) {
+
+        const { answer } = req.body;
+        const answerId = req.params.id;
+        const ans = await Answer.findByPk(answerId);
+        const newAnswer = await ans.update({ answer })
+        return res.json(newAnswer);
+    })
+);
+
 
 
 module.exports = router;

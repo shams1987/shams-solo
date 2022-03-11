@@ -15,7 +15,7 @@ const loadQuestions = (questions) => {
 };
 export const addQuestion = (newQuestion) => ({
     type: ADD_QUESTION,
-    newQuestion,
+    newQuestion
 });
 
 const removeQuestion = (questionId) => ({
@@ -24,7 +24,7 @@ const removeQuestion = (questionId) => ({
 });
 export const update = (newQuestion) => ({
     type: UPDATE_QUESTION,
-    newQuestion,
+    newQuestion
 });
 
 
