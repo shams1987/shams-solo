@@ -23,14 +23,15 @@ const Questions = () => {
     return (
         <>
             <h1>Questions</h1>
+            <Link to="/questions/new"><button type='button'>Enter A Question</button></Link>
             {questionList?.map(({ id, userId, title, imageUrl, description }) => (
                 <div>
                     <p key={id}>{title}</p>
                     <img src={imageUrl} />
                     <p key={id}>{description}</p>
-                    {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update</button></Link> : null}
-                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete</button> : null}
-                    {sessionUser.id === userId ? null : <button type='button'>Answer</button>}
+                    {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update your Question</button></Link> : null}
+                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
+                    {sessionUser.id === userId ? null : <Link to="/answers/new"><button type='button'>Answer</button></Link>}
                     <hr></hr>
                 </div>
             ))
