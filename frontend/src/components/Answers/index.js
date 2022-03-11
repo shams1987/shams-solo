@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 const Answers = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const answerList = useSelector((state) => Object.values(state.answer));
+    const question = useSelector((state) => state.question[id]);
+    const answerList = useSelector((state) => Object.values(state.answer).reverse());
     const sessionUser = useSelector(state => state.session.user);
 
 
@@ -23,6 +24,13 @@ const Answers = () => {
 
     return (
         <>
+            <h1>Question</h1>
+            <div>
+                <p key={id}>{question.title}</p>
+                <img src={question.imageUrl} />
+                <p key={id}>{question.description}</p>
+            </div>
+            <hr></hr>
             <h1>Answers</h1>
             {answerList?.map(({ id, userId, questionId, answer }) => (
                 <div>
