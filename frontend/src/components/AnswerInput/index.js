@@ -16,8 +16,6 @@ const AnswerInput = () => {
         setAnswer("");
     };
 
-    // why is id undefined ?  why is questionId not coming out of the params
-    console.log('******************', id)
     const handleSubmit = (e) => {
         e.preventDefault();
         const newAnswer = {
