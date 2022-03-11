@@ -31,7 +31,7 @@ const Questions = () => {
                     <p key={id}>{description}</p>
                     {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update your Question</button></Link> : null}
                     {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
-                    {sessionUser.id === userId ? null : <Link to="/answers/new"><button type='button'>Answer</button></Link>}
+                    {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button type='button'>Answer</button></Link>}
                     <hr></hr>
                 </div>
             ))

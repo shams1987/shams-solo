@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/questions/:id/update">
             <QuestionUpdate />
           </Route>
-          <Route exact path="/answers/new">
+          <Route exact path="/answers/:id/new">
             <AnswerInput />
           </Route>
           <Route exact path="/answers/:id">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postAnswer } from "../../store/answer";
+import { postAnswer, getAnswers } from "../../store/answer";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
@@ -15,6 +15,8 @@ const AnswerInput = () => {
     const reset = () => {
         setAnswer("");
     };
+
+    // why is id undefined ?  why is questionId not coming out of the params
     console.log('******************', id)
     const handleSubmit = (e) => {
         e.preventDefault();
