@@ -25,8 +25,8 @@ const removeAnswer = (answerId) => ({
 
 
 // thunk action creator for get
-export const getAnswers = () => async (dispatch) => {
-    const response = await csrfFetch('/api/answers');
+export const getAnswers = (questionId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/answers/${questionId}`);
 
     if (response.ok) {
         const data = await response.json();

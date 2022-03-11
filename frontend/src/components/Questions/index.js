@@ -29,8 +29,8 @@ const Questions = () => {
                     <p key={id}>{title}</p>
                     <img src={imageUrl} />
                     <p key={id}>{description}</p>
-                    {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update</button></Link> : null}
-                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete</button> : null}
+                    {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update your Question</button></Link> : null}
+                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
                     {sessionUser.id === userId ? null : <Link to="/answers/new"><button type='button'>Answer</button></Link>}
                     <hr></hr>
                 </div>

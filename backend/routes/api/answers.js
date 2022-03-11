@@ -9,7 +9,7 @@ router.get(
     asyncHandler(async function (req, res) {
         const answers = await Answer.findAll({
             where: {
-                questionId: +req.params.id,
+                questionId: req.params.id,
             },
         });
 
