@@ -22,8 +22,6 @@ const AnswerUpdate = () => {
 
     const updateAnsr = (e) => setAnswer(e.target.value);
 
-    console.log('**************************', question.id);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newAnswer = {
