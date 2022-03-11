@@ -5,26 +5,27 @@ const GET_ANSWERS = 'Answer/getAnswers';
 const ADD_ANSWER = 'Answer/addAnswer';
 const REMOVE_ANSWER = 'Answer/removeAnswer';
 
-//regular action creator
+// action creator Read
 const loadAnswers = (answers) => {
     return {
         type: GET_ANSWERS,
         answers
     };
 };
+
+// action creator for Create
 export const addAnswer = (newAnswer) => ({
     type: ADD_ANSWER,
     newAnswer,
 });
 
+// action creator for Delete
 const removeAnswer = (answerId) => ({
     type: REMOVE_ANSWER,
     answerId
 });
 
-
-
-// thunk action creator for get
+// thunk for Read
 export const getAnswers = (questionId) => async (dispatch) => {
     const response = await csrfFetch(`/api/answers/${questionId}`);
 
@@ -36,7 +37,7 @@ export const getAnswers = (questionId) => async (dispatch) => {
     }
 };
 
-// thunk action creator for POST request
+// thunk for Create
 export const postAnswer = (data) => async dispatch => {
     const res = await csrfFetch('/api/answers', {
         method: "POST",
@@ -46,9 +47,9 @@ export const postAnswer = (data) => async dispatch => {
     const newAnswer = await res.json()
     dispatch(addAnswer(newAnswer))
     return newAnswer;
-}
+};
 
-// thunk action creator for DELETE request
+// thunk for DELETE
 export const deleteAnswer = (answerId) => async dispatch => {
     const response = await csrfFetch(`/api/answers/${answerId}`, {
         method: 'delete',
