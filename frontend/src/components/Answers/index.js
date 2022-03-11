@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnswers, deleteAnswer } from '../../store/answer';
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 const Answers = () => {
@@ -26,9 +27,9 @@ const Answers = () => {
         <>
             <h1>Question</h1>
             <div>
-                <p key={id}>{question.title}</p>
-                <img src={question.imageUrl} />
-                <p key={id}>{question.description}</p>
+                <p key={id}>{question?.title}</p>
+                <img src={question?.imageUrl} />
+                <p key={id}>{question?.description}</p>
             </div>
             <hr></hr>
             <h1>Answers</h1>
@@ -36,6 +37,7 @@ const Answers = () => {
                 <div>
                     <p key={id}>{answer}</p>
                     {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Answer</button> : null}
+                    {sessionUser.id === userId ? <Link to={`/answers/${id}/update`}><button type='button'>Update your Answer</button></Link> : null}
                     <hr></hr>
                 </div>
             ))

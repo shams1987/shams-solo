@@ -9,6 +9,7 @@ import QuestionInput from "./components/QuestionInput";
 import QuestionUpdate from "./components/QuestionUpdate";
 import Answers from "./components/Answers";
 import AnswerInput from "./components/AnswerInput";
+import AnswerUpdate from "./components/AnswerUpdate";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/answers/:id">
             <Answers />
+          </Route>
+          <Route exact path="/answers/:id/update">
+            <AnswerUpdate />
           </Route>
         </Switch>
       )}
