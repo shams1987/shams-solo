@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAnswers, deleteAnswer } from '../../store/answer';
 import { useParams } from "react-router-dom";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import './Answer.css'
 
 
 const Answers = () => {
@@ -23,26 +24,29 @@ const Answers = () => {
         dispatch(deleteAnswer(id));
     };
 
+    // this code goes the other button when I want the update answer work
+    // {sessionUser.id === userId ? <Link to={`/answers/${id}/update`}><button type='button'>Update your Answer</button></Link> : null}
+
     return (
         <>
-            <h1>Question</h1>
-            <div>
-                <p key={id}>{question?.title}</p>
-                <img src={question?.imageUrl} />
-                <p key={id}>{question?.description}</p>
-            </div>
-            <hr></hr>
-            <h1>Answers</h1>
-            {answerList?.map(({ id, userId, questionId, answer }) => (
+            <div class="answer-display">
+                <h1>Question</h1>
                 <div>
-                    <p key={id}>{answer}</p>
-                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Answer</button> : null}
-                    {sessionUser.id === userId ? <Link to={`/answers/${id}/update`}><button type='button'>Update your Answer</button></Link> : null}
-                    <hr></hr>
+                    <p key={id}>{question?.title}</p>
+                    <img src={question?.imageUrl} />
+                    <p key={id}>{question?.description}</p>
                 </div>
-            ))
-            }
-
+                <hr></hr>
+                <h1>Answers</h1>
+                {answerList?.map(({ id, userId, questionId, answer }) => (
+                    <div>
+                        <p key={id}>{answer}</p>
+                        {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Answer</button> : null}
+                        <hr></hr>
+                    </div>
+                ))
+                }
+            </div>
         </>
     );
 };

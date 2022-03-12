@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllQuestions, deleteQuestion } from '../../store/question';
+import './Questions.css';
 
 
 const Questions = () => {
@@ -22,22 +23,24 @@ const Questions = () => {
 
     return (
         <>
-            <h1>Questions</h1>
-            <Link to="/questions/new"><button type='button'>Enter A Question</button></Link>
-            <hr></hr>
-            {questionList?.map(({ id, userId, title, imageUrl, description }) => (
-                <div>
-                    <p key={id}>{title}</p>
-                    <img src={imageUrl} />
-                    <p key={id}>{description}</p>
-                    <Link to={`/answers/${id}`}><button type='button'>Read Answers</button></Link>
-                    {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update your Question</button></Link> : null}
-                    {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
-                    {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button type='button'>Answer the Question</button></Link>}
-                    <hr></hr>
-                </div>
-            ))
-            }
+            <div class="question-display">
+                <h1>Questions</h1>
+                <Link to="/questions/new"><button type='button'>Enter A Question</button></Link>
+                <hr></hr>
+                {questionList?.map(({ id, userId, title, imageUrl, description }) => (
+                    <div>
+                        <p key={id}>{title}</p>
+                        <img src={imageUrl} />
+                        <p key={id}>{description}</p>
+                        <Link to={`/answers/${id}`}><button type='button'>Read Answers</button></Link>
+                        {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update your Question</button></Link> : null}
+                        {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
+                        {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button type='button'>Answer the Question</button></Link>}
+                        <hr></hr>
+                    </div>
+                ))
+                }
+            </div>
 
         </>
     );
