@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateQuestion } from "../../store/question";
 import { useHistory } from 'react-router-dom';
@@ -23,6 +23,15 @@ const QuestionUpdate = () => {
     const updateTitle = (e) => setTitle(e.target.value);
     const updateImageUrl = (e) => setImageUrl(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
+    const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        const validationErrors = [];
+        if (title.length < 1) validationErrors.push("Please add an answer");
+        if (imageUrl.length < 1) validationErrors.push("Please add an answer");
+        if (description.length < 1) validationErrors.push("Please add an answer");
+        setErrors(validationErrors);
+    }, [title, imageUrl, description]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -65,7 +74,7 @@ const QuestionUpdate = () => {
                     placeholder="Description"
                     rows="10"
                 ></textarea>
-                <button type="submit">Update</button>
+                <button type="submit" disabled={errors.length > 0}>Update</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postAnswer, getAnswers } from "../../store/answer";
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,13 @@ const AnswerInput = () => {
     const sessionUser = useSelector(state => state.session.user);
     const { id } = useParams();
     const history = useHistory();
+    const [errors, setErrors] = useState([]);
+
+    useEffect(() => {
+        const validationErrors = [];
+        if (answer.length < 1) validationErrors.push("Please add an answer");
+        setErrors(validationErrors);
+    }, [answer]);
 
     const reset = () => {
         setAnswer("");
@@ -43,7 +50,7 @@ const AnswerInput = () => {
                     placeholder="Answer"
                     rows="10"
                 ></textarea>
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={errors.length > 0}>Submit</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>

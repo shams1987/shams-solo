@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postQuestion } from "../../store/question";
 import { useHistory } from 'react-router-dom';
@@ -10,8 +10,18 @@ const QuestionInput = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
     const sessionUser = useSelector(state => state.session.user);
+    const [errors, setErrors] = useState([]);
 
     const history = useHistory();
+
+
+    useEffect(() => {
+        const validationErrors = [];
+        if (title.length < 1) validationErrors.push("Please add an answer");
+        if (imageUrl.length < 1) validationErrors.push("Please add an answer");
+        if (description.length < 1) validationErrors.push("Please add an answer");
+        setErrors(validationErrors);
+    }, [title, imageUrl, description]);
 
     const reset = () => {
         setTitle("");
@@ -65,7 +75,7 @@ const QuestionInput = () => {
                     placeholder="Description"
                     rows="10"
                 ></textarea>
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={errors.length > 0}>Submit</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>

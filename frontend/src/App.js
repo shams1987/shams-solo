@@ -9,7 +9,14 @@ import QuestionInput from "./components/QuestionInput";
 import QuestionUpdate from "./components/QuestionUpdate";
 import Answers from "./components/Answers";
 import AnswerInput from "./components/AnswerInput";
-import AnswerUpdate from "./components/AnswerUpdate";
+import Home from "./components/Home"
+
+// add these for answer update
+//import AnswerUpdate from "./components/AnswerUpdate";
+
+/* <Route exact path="/answers/:id/update">
+<AnswerUpdate />
+</Route> */
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +30,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
@@ -40,9 +50,6 @@ function App() {
           </Route>
           <Route exact path="/answers/:id">
             <Answers />
-          </Route>
-          <Route exact path="/answers/:id/update">
-            <AnswerUpdate />
           </Route>
         </Switch>
       )}
