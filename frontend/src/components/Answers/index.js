@@ -27,16 +27,18 @@ const Answers = () => {
     // this code goes the other button when I want the update answer work
     // {sessionUser.id === userId ? <Link to={`/answers/${id}/update`}><button type='button'>Update your Answer</button></Link> : null}
 
+
+    //     <h1>Question</h1>
+    //     <div>
+    //         <p key={id}>{question?.title}</p>
+    //         <img src={question?.imageUrl} />
+    //         <p key={id}>{question?.description}</p>
+    //     </div>
+    // <hr></hr>
+
     return (
         <>
             <div class="answer-display">
-                <h1>Question</h1>
-                <div>
-                    <p key={id}>{question?.title}</p>
-                    <img src={question?.imageUrl} />
-                    <p key={id}>{question?.description}</p>
-                </div>
-                <hr></hr>
                 <h1>Answers</h1>
                 {answerList?.map(({ id, userId, questionId, answer }) => (
                     <div>
