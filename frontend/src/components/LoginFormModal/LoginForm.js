@@ -18,6 +18,17 @@ function LoginForm() {
             }
         );
     };
+    // Demo user login
+    const handleDemo = () => {
+        //e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({ credential: "demo@user.io", password: "password" })).catch(
+            async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            }
+        );
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -45,6 +56,7 @@ function LoginForm() {
                 />
             </label>
             <button type="submit">Log In</button>
+            <button type="onClick" onClick={(e) => handleDemo()}>Demo</button>
         </form>
     );
 }

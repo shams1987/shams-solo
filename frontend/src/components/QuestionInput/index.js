@@ -28,9 +28,15 @@ const QuestionInput = () => {
             description
         };
 
-        //  Dispatch the return value of the thunk creator instead (the thunk)
+        //  Dispatch the return value of the thunk creator
         dispatch(postQuestion(newQuestion));
         reset();
+        history.push('/questions');
+    };
+    const handleCancelClick = () => {
+        //e.preventDefault();
+        //setErrorMessages({});
+        //hideForm();
         history.push('/questions');
     };
 
@@ -60,6 +66,7 @@ const QuestionInput = () => {
                     rows="10"
                 ></textarea>
                 <button type="submit">Submit</button>
+                <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     );

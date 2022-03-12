@@ -2,6 +2,15 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Answer } = require('../../db/models');
 const router = express.Router();
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+
+const validateAnswer = [
+    check('answer')
+        .notEmpty()
+        .withMessage('Please provide an answer.'),
+    handleValidationErrors
+];
 
 // Read answers to one question
 router.get(
@@ -18,7 +27,7 @@ router.get(
 );
 
 // Create an answer
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', validateAnswer, asyncHandler(async (req, res) => {
     const answer = await Answer.create(req.body);
     res.json(answer);
 }));
@@ -36,7 +45,7 @@ router.delete(
 
 // Update an answer
 router.put(
-    '/:id',
+    '/:id', validateAnswer,
     asyncHandler(async function (req, res) {
 
         const { answer } = req.body;

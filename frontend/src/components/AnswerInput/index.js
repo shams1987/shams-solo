@@ -29,7 +29,9 @@ const AnswerInput = () => {
         reset();
         history.push(`/answers/${id}`);
     };
-
+    const handleCancelClick = () => {
+        history.push('/questions');
+    }
     return (
         <div className="inputBox">
             <h1>Answer</h1>
@@ -42,6 +44,7 @@ const AnswerInput = () => {
                     rows="10"
                 ></textarea>
                 <button type="submit">Submit</button>
+                <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     );

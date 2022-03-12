@@ -1,8 +1,23 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { Question } = require('../../db/models');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
+
+const validateQuestion = [
+    check('title')
+        .notEmpty()
+        .withMessage('Please provide a question.'),
+    check('imageUrl')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide an imageUrl.'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a description of your question.'),
+    handleValidationErrors
+];
 
 // Read all questions
 router.get(
@@ -14,7 +29,7 @@ router.get(
 );
 
 // Create a question
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', validateQuestion, asyncHandler(async (req, res) => {
     const question = await Question.create(req.body);
     res.json(question);
 }));
@@ -32,7 +47,7 @@ router.delete(
 
 // Update a question
 router.put(
-    '/:id',
+    '/:id', validateQuestion,
     asyncHandler(async function (req, res) {
 
         const { title, imageUrl, description } = req.body;

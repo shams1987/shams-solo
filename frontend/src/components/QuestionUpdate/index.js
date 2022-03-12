@@ -37,7 +37,9 @@ const QuestionUpdate = () => {
         const questionData = await dispatch(updateQuestion(newQuestion));
         if (questionData) history.push('/questions');
     };
-
+    const handleCancelClick = () => {
+        history.push('/questions');
+    }
     return (
         <div className="inputBox">
             <h1>Update Question</h1>
@@ -64,6 +66,7 @@ const QuestionUpdate = () => {
                     rows="10"
                 ></textarea>
                 <button type="submit">Update</button>
+                <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     );
