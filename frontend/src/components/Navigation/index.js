@@ -23,7 +23,7 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <div class="topnav">
+        <div className="topnav">
             <ul>
                 <li>
                     <NavLink exact to="/">Home</NavLink>

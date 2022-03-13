@@ -9,9 +9,11 @@ import './Answer.css'
 const Answers = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const question = useSelector((state) => state.question[id]);
     const answerList = useSelector((state) => Object.values(state.answer).reverse());
     const sessionUser = useSelector(state => state.session.user);
+
+    // const questionList = useSelector((state) => Object.values(state.question));
+    // const question = questionList[id - 1];
 
 
     useEffect(() => {
@@ -19,26 +21,25 @@ const Answers = () => {
     }, [dispatch]);
 
     const handleDelete = (id) => {
-
         //  Dispatch the return value of the thunk creator
         dispatch(deleteAnswer(id));
     };
 
-    // this code goes the other button when I want the update answer work
+    // this code goes is for the other button when I want the update answer work
     // {sessionUser.id === userId ? <Link to={`/answers/${id}/update`}><button type='button'>Update your Answer</button></Link> : null}
 
+    // this code is for question detail on top of answer list
     // <h1>Question</h1>
     // <div>
-    //     <p >{question?.title}</p>
-    //     <img src={question?.imageUrl} />
-    //     <p >{question?.description}</p>
+    //     <p >{question.title}</p>
+    //     <img src={question.imageUrl} />
+    //     <p >{question.description}</p>
     // </div>
     // <hr></hr>
 
-
     return (
         <>
-            <div class="answer-display">
+            <div className="answer-display">
                 <h1>Answers</h1>
                 {answerList.length === 0 ? <p>At this moment there are no Answers to this Question</p> : null}
                 {answerList?.map(({ id, userId, questionId, answer }) => (
