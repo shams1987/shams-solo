@@ -44,7 +44,7 @@ const AnswerInput = () => {
         <div className="add-answer">
             <h1>Answer</h1>
             <form onSubmit={handleSubmit}>
-                <textarea
+                <textarea id="add-answer-description"
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
                     name="answer"
@@ -52,8 +52,8 @@ const AnswerInput = () => {
                     required
                     rows="10"
                 ></textarea>
-                <button type="submit">Submit</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
+                <button id="add-answer-btn" type="submit">Submit</button>
+                <button id="add-answer-cancel" type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     );

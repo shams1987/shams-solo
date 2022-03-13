@@ -51,32 +51,38 @@ const QuestionUpdate = () => {
         history.push('/questions');
     }
     return (
-        <div className="update-question">
-            <h1>Update Question</h1>
+        <div className="upd-question">
+            <h1>Update Your Question</h1>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={updateTitle}
-                    placeholder="Title"
-                    name="title"
-                />
-                <input
-                    type="text"
-                    value={imageUrl}
-                    onChange={updateImageUrl}
-                    placeholder="Image URL"
-                    name="imageUrl"
-                />
-                <textarea
-                    value={description}
-                    name="description"
-                    onChange={updateDescription}
-                    placeholder="Description"
-                    rows="10"
-                ></textarea>
-                <button type="submit" disabled={errors.length > 0}>Update</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
+                <label> Question Title:
+                    <input id="upd-question-title"
+                        type="text"
+                        value={title}
+                        onChange={updateTitle}
+                        placeholder="Title"
+                        name="title"
+                    />
+                </label>
+                <label> Image URL:
+                    <input
+                        type="text" id="upd-question-image"
+                        value={imageUrl}
+                        onChange={updateImageUrl}
+                        placeholder="Image URL"
+                        name="imageUrl"
+                    />
+                </label>
+                <label> Description:
+                    <textarea id="upd-question-description"
+                        value={description}
+                        name="description"
+                        onChange={updateDescription}
+                        placeholder="Description"
+                        rows="10"
+                    ></textarea>
+                </label>
+                <button id="upd-question-btn" type="submit" disabled={errors.length > 0}>Update</button>
+                <button id="upd-question-cancel" type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     );

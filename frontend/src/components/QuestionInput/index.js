@@ -55,32 +55,38 @@ const QuestionInput = () => {
         <div className="add-question">
             <h1>Question?</h1>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                    placeholder="Title"
-                    name="title"
-                    required
-                />
-                <input
-                    type="text"
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    value={imageUrl}
-                    placeholder="Image URL"
-                    name="imageUrl"
-                    required
-                />
-                <textarea
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    name="description"
-                    placeholder="Description"
-                    required
-                    rows="10"
-                ></textarea>
-                <button type="submit" >Submit</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
+                <label> Question Title:
+                    <input id="add-question-title"
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                        value={title}
+                        placeholder="Title"
+                        name="title"
+                        required
+                    />
+                </label>
+                <label> Image URL:
+                    <input id="add-question-image"
+                        type="text"
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        value={imageUrl}
+                        placeholder="Image URL"
+                        name="imageUrl"
+                        required
+                    />
+                </label>
+                <label> Description:
+                    <textarea id="add-question-description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        name="description"
+                        placeholder="Description"
+                        required
+                        rows="10"
+                    ></textarea>
+                </label>
+                <button id="add-question-btn" type="submit" >Submit</button>
+                <button id="add-question-cancel" type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
     );
