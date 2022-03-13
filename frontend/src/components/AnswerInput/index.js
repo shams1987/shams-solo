@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postAnswer, getAnswers } from "../../store/answer";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import "./AnswerInput.css"
 
 const AnswerInput = () => {
     const dispatch = useDispatch();
@@ -11,13 +12,13 @@ const AnswerInput = () => {
     const sessionUser = useSelector(state => state.session.user);
     const { id } = useParams();
     const history = useHistory();
-    const [errors, setErrors] = useState([]);
+    //const [errors, setErrors] = useState([]);
 
-    useEffect(() => {
-        const validationErrors = [];
-        if (answer.length < 1) validationErrors.push("Please add an answer");
-        setErrors(validationErrors);
-    }, [answer]);
+    // useEffect(() => {
+    //     const validationErrors = [];
+    //     if (answer.length < 1) validationErrors.push("Please add an answer");
+    //     setErrors(validationErrors);
+    // }, [answer]);
 
     const reset = () => {
         setAnswer("");
@@ -40,7 +41,7 @@ const AnswerInput = () => {
         history.push('/questions');
     }
     return (
-        <div className="inputBox">
+        <div className="add-answer">
             <h1>Answer</h1>
             <form onSubmit={handleSubmit}>
                 <textarea
@@ -48,9 +49,10 @@ const AnswerInput = () => {
                     onChange={(e) => setAnswer(e.target.value)}
                     name="answer"
                     placeholder="Answer"
+                    required
                     rows="10"
                 ></textarea>
-                <button type="submit" disabled={errors.length > 0}>Submit</button>
+                <button type="submit">Submit</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>
