@@ -28,17 +28,17 @@ const Questions = () => {
         <>
             <div className="question-display">
                 <h1>Questions</h1>
-                <Link to="/questions/new"><button type='button'>Enter A Question</button></Link>
+                <Link to="/questions/new"><button id="enter-question-btn" type='button'>Enter A Question</button></Link>
                 <hr></hr>
                 {questionList?.map(({ id, userId, title, imageUrl, description }) => (
                     <div>
-                        <p className="question-title" bold key={id}>{title}</p>
+                        <p className="question-title" key={id}>{title}</p>
                         <div className="question-image"><img key={id} src={imageUrl} /></div>
                         <p key={id}>{description}</p>
-                        <Link to={`/answers/${id}`}><button type='button'>Read Answers</button></Link>
-                        {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button type='button'>Update your Question</button></Link> : null}
-                        {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
-                        {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button type='button'>Answer the Question</button></Link>}
+                        <Link to={`/answers/${id}`}><button id="read-answer-btn" type='button'>Read Answers</button></Link>
+                        {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button id="ans-question-btn" type='button'>Answer the Question</button></Link>}
+                        {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button id="update-question-btn" type='button'>Update your Question</button></Link> : null}
+                        {sessionUser.id === userId ? <button id="del-question-btn" type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
                         < hr ></hr>
                     </div>
                 ))

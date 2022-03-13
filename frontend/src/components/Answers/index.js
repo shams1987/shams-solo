@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 //import { Link } from 'react-router-dom';
 import './Answer.css'
 
+import { Link } from 'react-router-dom';
+
 
 const Answers = () => {
     const dispatch = useDispatch();
@@ -45,11 +47,12 @@ const Answers = () => {
                 {answerList?.map(({ id, userId, questionId, answer }) => (
                     <div>
                         <p key={id}>{answer}</p>
-                        {sessionUser.id === userId ? <button type='button' onClick={() => handleDelete(id)}>Delete your Answer</button> : null}
+                        {sessionUser.id === userId ? <button id="delete-answer-btn" type='button' onClick={() => handleDelete(id)}>Delete your Answer</button> : null}
                         <hr></hr>
                     </div>
                 ))
                 }
+                <Link to="/questions"><button id="back-to-questions" type="button">Back to Questions</button></Link>
             </div>
         </>
     );
