@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateQuestion } from "../../store/question";
 import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
+import "./QuestionUpdate.css"
 
 
 
@@ -50,7 +51,7 @@ const QuestionUpdate = () => {
         history.push('/questions');
     }
     return (
-        <div className="inputBox">
+        <div className="update-question">
             <h1>Update Question</h1>
             <form onSubmit={handleSubmit}>
                 <input

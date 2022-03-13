@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postQuestion } from "../../store/question";
 import { useHistory } from 'react-router-dom';
+import "./QuestionInput.css";
 
 const QuestionInput = () => {
     const dispatch = useDispatch();
@@ -10,18 +11,18 @@ const QuestionInput = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
     const sessionUser = useSelector(state => state.session.user);
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
 
     const history = useHistory();
 
 
-    useEffect(() => {
-        const validationErrors = [];
-        if (title.length < 1) validationErrors.push("Please add an answer");
-        if (imageUrl.length < 1) validationErrors.push("Please add an answer");
-        if (description.length < 1) validationErrors.push("Please add an answer");
-        setErrors(validationErrors);
-    }, [title, imageUrl, description]);
+    // useEffect(() => {
+    //     const validationErrors = [];
+    //     if (title.length < 1) validationErrors.push("Please add an answer");
+    //     if (imageUrl.length < 1) validationErrors.push("Please add an answer");
+    //     if (description.length < 1) validationErrors.push("Please add an answer");
+    //     setErrors(validationErrors);
+    // }, [title, imageUrl, description]);
 
     const reset = () => {
         setTitle("");
@@ -51,8 +52,8 @@ const QuestionInput = () => {
     };
 
     return (
-        <div className="inputBox">
-            <h1>Create Question</h1>
+        <div className="add-question">
+            <h1>Question?</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -60,6 +61,7 @@ const QuestionInput = () => {
                     value={title}
                     placeholder="Title"
                     name="title"
+                    required
                 />
                 <input
                     type="text"
@@ -67,15 +69,17 @@ const QuestionInput = () => {
                     value={imageUrl}
                     placeholder="Image URL"
                     name="imageUrl"
+                    required
                 />
                 <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     name="description"
                     placeholder="Description"
+                    required
                     rows="10"
                 ></textarea>
-                <button type="submit" disabled={errors.length > 0}>Submit</button>
+                <button type="submit" >Submit</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </div>

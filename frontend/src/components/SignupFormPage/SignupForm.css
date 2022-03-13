@@ -24,11 +24,9 @@ input {
     font-size: 18px;
     color: rgb(5, 5, 5);
 
-    background-color: rgb(236, 225, 225);
+    background-color: white;
 }
-.btns {
-    margin: 15px auto;
-}
+
 
 
 button {
