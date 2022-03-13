@@ -8,7 +8,6 @@ function Home() {
     return (
         <div className="home">
             <div className="banner"><h1>Welcome to Nibora</h1></div>
-            <div className="splash-questions" >{(sessionUser) ? <Link to="/questions">Questions</Link> : null}</div>
             <div className="splash-img"></div>
         </div>
     );

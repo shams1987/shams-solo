@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -29,6 +29,8 @@ function Navigation({ isLoaded }) {
                 <NavLink exact to="/">Home</NavLink>
                 {isLoaded && sessionLinks}
             </div>
+
+            <div className="splash-questions" >{(sessionUser) ? <Link to="/questions"><button type="button">Questions</button></Link> : null}</div>
 
         </div>
     );
