@@ -7,7 +7,9 @@ function Home() {
 
     return (
         <div className="home">
-            <div className="banner"><h1>Welcome to Nibora</h1></div>
+            <div className="banner"><h1>Nibora.</h1></div>
+            <div className="banner"><h2>A Place for all things Fountain Pen</h2></div>
+
             <div className="splash-img"></div>
         </div>
     );

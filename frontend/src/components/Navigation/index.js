@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
 
     return (
         <div className="topnav">
-            <div><p id="nibora">nibora</p></div>
+            <div><p id="nibora">Nibora</p></div>
             <div className="nav-home">
                 <Link exact to="/"><button id="nav-home-btn" type="button">Home</button></Link>
             </div>
