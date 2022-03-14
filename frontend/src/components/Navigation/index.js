@@ -17,20 +17,20 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <LoginFormModal />
-                <NavLink to="/signup"><button class="sign-up-btn" type="button">Sign Up</button></NavLink>
+                <NavLink to="/signup"><button id="nav-sign-up-btn" type="button">Sign Up</button></NavLink>
             </>
         );
     }
 
     return (
         <div className="topnav">
-
-            <div>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
+            <div><p id="nibora">nibora</p></div>
+            <div className="nav-home">
+                <Link exact to="/"><button id="nav-home-btn" type="button">Home</button></Link>
             </div>
+            <div className="navbar-questions" >{(sessionUser) ? <Link to="/questions"><button id="nav-questions-btn" type="button">Questions</button></Link> : null}</div>
+            <div>  {isLoaded && sessionLinks}</div>
 
-            <div className="navbar-questions" >{(sessionUser) ? <Link to="/questions"><button type="button">Questions</button></Link> : null}</div>
 
         </div>
     );

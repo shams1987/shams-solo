@@ -34,12 +34,14 @@ const Questions = () => {
                     <div>
                         <p className="question-title" key={imageUrl}>{title}</p>
                         <div className="question-image"><img key={id} src={imageUrl} /></div>
-                        <p key={id}>{description}</p>
-                        <Link to={`/answers/${id}`}><button id="read-answer-btn" type='button'>Read Answers</button></Link>
-                        {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button id="ans-question-btn" type='button'>Answer the Question</button></Link>}
-                        {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button id="update-question-btn" type='button'>Update your Question</button></Link> : null}
-                        {sessionUser.id === userId ? <button id="del-question-btn" type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
-                        < hr ></hr>
+                        <p className="question-description" key={id}>{description}</p>
+                        <div className="group-buttons">
+                            <Link to={`/answers/${id}`}><button id="read-answer-btn" type='button'>Read Answers</button></Link>
+                            {sessionUser.id === userId ? null : <Link to={`/answers/${id}/new`}><button id="ans-question-btn" type='button'>Answer the Question</button></Link>}
+                            {sessionUser.id === userId ? <Link to={`/questions/${id}/update`}><button id="update-question-btn" type='button'>Update your Question</button></Link> : null}
+                            {sessionUser.id === userId ? <button id="del-question-btn" type='button' onClick={() => handleDelete(id)}>Delete your Question</button> : null}
+                        </div>
+                        <hr></hr>
                     </div>
                 ))
                 }
