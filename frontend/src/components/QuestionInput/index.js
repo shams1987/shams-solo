@@ -11,18 +11,10 @@ const QuestionInput = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [description, setDescription] = useState("");
     const sessionUser = useSelector(state => state.session.user);
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     const history = useHistory();
 
-
-    // useEffect(() => {
-    //     const validationErrors = [];
-    //     if (title.length < 1) validationErrors.push("Please add an answer");
-    //     if (imageUrl.length < 1) validationErrors.push("Please add an answer");
-    //     if (description.length < 1) validationErrors.push("Please add an answer");
-    //     setErrors(validationErrors);
-    // }, [title, imageUrl, description]);
 
     const reset = () => {
         setTitle("");
@@ -39,21 +31,32 @@ const QuestionInput = () => {
             description
         };
 
-        //  Dispatch the return value of the thunk creator
-        dispatch(postQuestion(newQuestion));
-        reset();
-        history.push('/questions');
+        if ((title) && (imageUrl) && (description)) {
+
+            //  Dispatch the return value of the thunk creator
+            dispatch(postQuestion(newQuestion));
+            reset();
+            history.push('/questions');
+            return
+        }
+        else {
+            if (!title) { setErrors(["Please preovide a TITLE for the questions"]) };
+            if (!imageUrl) { setErrors(["Please provide a valid IMAGE URL"]) };
+            if (!description) { setErrors(["Please provide a DESCRIPTION for the question you have"]) };
+        }
+
     };
     const handleCancelClick = () => {
-        //e.preventDefault();
-        //setErrorMessages({});
-        //hideForm();
         history.push('/questions');
     };
 
     return (
         <div className="add-question">
             <h1>Question?</h1>
+            <ul>
+                {errors.map(error => (<li key={error} id="error">{error}</li>
+                ))}
+            </ul>
             <form onSubmit={handleSubmit}>
                 <label> Question Title:
                     <input id="add-question-title"
@@ -62,7 +65,6 @@ const QuestionInput = () => {
                         value={title}
                         placeholder="Title"
                         name="title"
-                        required
                     />
                 </label>
                 <label> Image URL:
@@ -72,7 +74,6 @@ const QuestionInput = () => {
                         value={imageUrl}
                         placeholder="Image URL"
                         name="imageUrl"
-                        required
                     />
                 </label>
                 <label> Description:
@@ -81,7 +82,6 @@ const QuestionInput = () => {
                         onChange={(e) => setDescription(e.target.value)}
                         name="description"
                         placeholder="Description"
-                        required
                         rows="10"
                     ></textarea>
                 </label>

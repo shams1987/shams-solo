@@ -28,9 +28,9 @@ const QuestionUpdate = () => {
 
     useEffect(() => {
         const validationErrors = [];
-        if (title.length < 1) validationErrors.push("Please add an answer");
-        if (imageUrl.length < 1) validationErrors.push("Please add an answer");
-        if (description.length < 1) validationErrors.push("Please add an answer");
+        if (!title) validationErrors.push("Please add a Title");
+        if (!imageUrl) validationErrors.push("Please add an Image URL");
+        if (!description) validationErrors.push("Please add Description");
         setErrors(validationErrors);
     }, [title, imageUrl, description]);
 
@@ -53,6 +53,10 @@ const QuestionUpdate = () => {
     return (
         <div className="upd-question">
             <h1>Update Your Question</h1>
+            <ul>
+                {errors.map(error => (<li key={error} id="error">{error}</li>
+                ))}
+            </ul>
             <form onSubmit={handleSubmit}>
                 <label> Question Title:
                     <input id="upd-question-title"

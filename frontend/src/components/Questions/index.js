@@ -32,7 +32,7 @@ const Questions = () => {
                 <hr></hr>
                 {questionList?.map(({ id, userId, title, imageUrl, description }) => (
                     <div>
-                        <p className="question-title" key={id}>{title}</p>
+                        <p className="question-title" key={imageUrl}>{title}</p>
                         <div className="question-image"><img key={id} src={imageUrl} /></div>
                         <p key={id}>{description}</p>
                         <Link to={`/answers/${id}`}><button id="read-answer-btn" type='button'>Read Answers</button></Link>

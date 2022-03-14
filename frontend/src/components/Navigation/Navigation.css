@@ -1,5 +1,5 @@
 
-  .topnav {
+.topnav {
     align-items: center;
     background-color: rgb(137, 156, 238);
     border-bottom: solid #71eea5;
@@ -11,4 +11,16 @@
     position: sticky;
     top: 0;
     z-index: 100;
+}
+.profile-dropdown {
+  display: flex;
+  list-style-type: none;
+  background-color: #3636ddf2;
+  flex-direction: column;
+  color: white;
+}
+
+.log-out-button {
+  cursor: pointer;
+  justify-self: center;
 }

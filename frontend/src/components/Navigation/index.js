@@ -17,7 +17,7 @@ function Navigation({ isLoaded }) {
         sessionLinks = (
             <>
                 <LoginFormModal />
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/signup"><button class="sign-up-btn" type="button">Sign Up</button></NavLink>
             </>
         );
     }
@@ -30,7 +30,7 @@ function Navigation({ isLoaded }) {
                 {isLoaded && sessionLinks}
             </div>
 
-            <div className="splash-questions" >{(sessionUser) ? <Link to="/questions"><button type="button">Questions</button></Link> : null}</div>
+            <div className="navbar-questions" >{(sessionUser) ? <Link to="/questions"><button type="button">Questions</button></Link> : null}</div>
 
         </div>
     );
